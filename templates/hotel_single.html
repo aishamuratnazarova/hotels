@@ -1,0 +1,41 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+</head>
+<body>
+
+<h1>{{ hotel1.title }}</h1>
+<p>{{ hotel1.text }}</p>
+<p> Адрес: {{ hotel1.adress }}</p>
+<p> Типы номеров: {{ hotel1.rooms_type }}</p>
+<p> Вместительность: {{ hotel1.capacity }}</p>
+<p> Удобства: {{ hotel1.accommodation }}</p>
+<p> Владелец: {{ hotel1.owner }}</p>
+<p> Дата публикации: {{ hotel1.created }}</p>
+<br>
+<br><br>
+Комментарии:<br><br><br><br>
+{% for comment in comments %}
+    Пользователь: {{ comment.user}}<br><br>
+    Добавлено: {{comment.created}}<br><br>
+    Период проживания: {{comment.period}}<br><br>
+    Рейтинг: {{comment.rating}}<br><br>
+    {{comment.text}} <br><br>
+<br><br>
+{% endfor %}
+<br><br>
+
+{% if user.is_active %}
+    Ваш комментарий: <br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit"> Отправить </button>
+    </form>>
+{% else %}
+    <h4>Что-бы оставить комментарийй, необходимо войти</h4>
+{% endif %}
+</body>
